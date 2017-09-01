@@ -125,9 +125,9 @@ To train the model, I used adam optimizer, a batch size of 128, 10 epochs and a 
 
 #### 4. Describe the approach taken for finding a solution and getting the validation set accuracy to be at least 0.93. Include in the discussion the results on the training, validation and test sets and where in the code these were calculated. Your approach may have been an iterative process, in which case, outline the steps you took to get to the final solution and why you chose those steps. Perhaps your solution involved an already well known implementation or architecture. In this case, discuss why you think the architecture is suitable for the current problem.
 
-My starting point was the LeNet-5 implementation shown in the [classroom](https://github.com/udacity/CarND-LeNet-Lab/blob/master/LeNet-Lab-Solution.ipynb)
+My starting point was the LeNet-5 implementation shown in the [lecture](https://github.com/udacity/CarND-LeNet-Lab/blob/master/LeNet-Lab-Solution.ipynb). I thought LeNet is a good starting point for recognising traffic signs because LeNet was proven to be an effective solution for classifying hand written digits in images and classifying traffic signs in an image seems like a similar problem. In addition it was mentioned in the description under step 2 in Traffic_Sign_Classifier.ipynb file that LeNet-5 solution from the lecture will give a validation accuracy of about 0.89 out of the box which seemed as a very good starting point to classify the traffic signs.
 
-After changing the class size to 43 from the LeNet-5 implementation shown in the classroom i was able to achieve a validation accuracy of ~0.90. I then added 2 dropout layers as dropouts prevent overfitting. I was blocked prior to this stage and was unable to use the classroom LeNet-5 implementation and get an accuracy of ~0.89. I posted a query in the udacity forum and got pointers to change the unique class number in the default LeNet-5 implementation.  I then pre-processed the data by greyscaling and normalising and finally augumenting the data such that all the images have a same frequency and i got the following final results:
+I started by changing the class size to 43 from the LeNet-5 implementation shown in the lecture, i was able to achieve a validation accuracy of ~0.90. I then added 2 dropout layers as dropouts prevent overfitting. I was blocked prior to this stage and was unable to use the classroom LeNet-5 implementation and get an accuracy of ~0.89. I posted a query in the udacity forum and got pointers to change the unique class number in the default LeNet-5 implementation.  I then pre-processed the data by greyscaling and normalising and finally augumenting the data such that all the images have a same frequency and i got the following final results:
 
 * Training set accuracy of 0.988
 * Validation set accuracy of 0.960 
@@ -165,7 +165,9 @@ Here are the results of the prediction:
 | Road work			| Road work     							|
 
 
-The model was able to correctly guess 4 of the 5 traffic signs, which gives an accuracy of 80%. 
+The accuracy on the captured images is 80% while it was 93% on the testing set thus it seems the model is overfitting.
+
+
 
 #### 3. Describe how certain the model is when predicting on each of the five new images by looking at the softmax probabilities for each prediction. Provide the top 5 softmax probabilities for each image along with the sign type of each probability. (OPTIONAL: as described in the "Stand Out Suggestions" part of the rubric, visualizations can also be provided such as bar charts)
 
@@ -228,5 +230,5 @@ The top five soft max probabilities were:
 |  Beware of ice/snow   |  3.90485e-05		                      		|
 |  Double curve	        |  6.61009e-07     							    |
 
-
+The model was able to correctly predict 4 of the 5 traffic signs, which makes the model 80% certain and 20% uncertain. While image 3 is actually a "Turn Right Ahead" sign the model was not predicting it as the right sign in the top 5 probabilities. 
 
